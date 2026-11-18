@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">One X Control</string>
+    <string name="control_center_brand">ONE X CONTROL</string>
+    <string name="notification_channel_name">الزر العائم لمركز التحكم</string>
+    <string name="notification_channel_desc">يحافظ على جاهزية الزر العائم لفتح مركز التحكم عند تفعيله</string>
+    <string name="notification_title">ONE X CONTROL نشط</string>
+    <string name="notification_text">اضغط على الزر العائم لفتح مركز التحكم من الحافة العلوية</string>
+    <string name="notification_action_open">فتح اللوحة</string>
+    <string name="notification_action_stop">إخفاء الزر</string>
+</resources>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Outer subtle electric blue ring inside 66dp safe zone -->
+    <path
+        android:fillColor="#1A0F1D3A"
+        android:pathData="M54,23 A31,31 0 1,1 53.99,23 Z"
+        android:strokeWidth="2.8"
+        android:strokeColor="#60A5FA" />
+
+    <!-- Top-left glowing active blue control tile -->
+    <path android:pathData="M39,35 h11 a4,4 0 0,1 4,4 v11 a4,4 0 0,1 -4,4 h-11 a4,4 0 0,1 -4,-4 v-11 a4,4 0 0,1 4,-4 z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="35"
+                android:startY="35"
+                android:endX="54"
+                android:endY="54"
+                android:type="linear">
+                <item android:color="#60A5FA" android:offset="0.0" />
+                <item android:color="#2563EB" android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Top-right crisp frosted white tile -->
+    <path
+        android:fillColor="#F8FAFC"
+        android:pathData="M61,35 h8 a4,4 0 0,1 4,4 v11 a4,4 0 0,1 -4,4 h-8 a4,4 0 0,1 -4,-4 v-11 a4,4 0 0,1 4,-4 z" />
+
+    <!-- Bottom-left crisp frosted white tile -->
+    <path
+        android:fillColor="#CBD5E1"
+        android:pathData="M39,58 h11 a4,4 0 0,1 4,4 v7 a4,4 0 0,1 -4,4 h-11 a4,4 0 0,1 -4,-4 v-7 a4,4 0 0,1 4,-4 z" />
+
+    <!-- Bottom-right glowing cyan-blue accent pill -->
+    <path android:pathData="M61,58 h8 a4,4 0 0,1 4,4 v7 a4,4 0 0,1 -4,4 h-8 a4,4 0 0,1 -4,-4 v-7 a4,4 0 0,1 4,-4 z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="57"
+                android:startY="58"
+                android:endX="73"
+                android:endY="73"
+                android:type="linear">
+                <item android:color="#38BDF8" android:offset="0.0" />
+                <item android:color="#3B82F6" android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+</vector>

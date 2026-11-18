@@ -1,0 +1,6 @@
+{
+  "name": "One X Control",
+  "description": "Customizable top-anchored Android Control Center with One UI glassmorphism, HyperOS-style device shortcuts, floating edge launcher, live customization studio, and full Arabic RTL and English LTR support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
