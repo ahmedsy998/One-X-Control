@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: Build One X Control Debug APK
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Check out repository
@@ -26,14 +26,9 @@ jobs:
         uses: android-actions/setup-android@v4
         with:
           accept-android-sdk-licenses: true
-          packages: |
-            platform-tools
-            cmdline-tools;latest
-            platforms;android-36.1
-            platforms;android-36
-            build-tools;36.0.0
+          packages: 'platforms;android-36 build-tools;36.0.0'
 
-      - name: Verify Android SDK Installation
+      - name: Verify Android SDK Installation & Diagnostics
         run: |
           set -euo pipefail
           SDK_DIR="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
@@ -43,15 +38,27 @@ jobs:
             exit 1
           fi
 
-          for required in "platform-tools" "platforms/android-36.1" "build-tools/36.0.0"; do
-            if [ ! -d "$SDK_DIR/$required" ]; then
-              echo "::error::Missing required Android SDK component: $SDK_DIR/$required"
+          echo "sdkmanager path: $(command -v sdkmanager || echo 'NOT FOUND')"
+          sdkmanager --version
+
+          REQUIRED_PACKAGES=("platforms;android-36" "build-tools;36.0.0")
+          REQUIRED_DIRS=("platforms/android-36" "build-tools/36.0.0")
+
+          for i in "${!REQUIRED_PACKAGES[@]}"; do
+            PKG="${REQUIRED_PACKAGES[$i]}"
+            DIR="$SDK_DIR/${REQUIRED_DIRS[$i]}"
+            if [ ! -d "$DIR" ]; then
+              echo "::error::Required Android SDK package missing: ${PKG} (expected directory: ${DIR})"
+              echo "Diagnostic command: sdkmanager --install \"${PKG}\""
+              echo "Installed SDK root contents:"
               ls -la "$SDK_DIR" || true
+              echo "Available SDK repository entries matching platform/build-tools:"
+              sdkmanager --list | grep -E 'platforms;android-3|build-tools;3' || true
               exit 1
             fi
           done
 
-          (set +o pipefail; yes | sdkmanager --licenses >/dev/null 2>&1 || true)
+          echo "Installed Android SDK packages:"
           sdkmanager --list_installed
 
       - name: Set up Gradle
@@ -122,7 +129,7 @@ jobs:
             echo "::error::No valid non-empty APK found in $APK_DIR"
             exit 1
           fi
-          echo "Verified APK: $APK_FILE"
+          echo "Verified non-empty Debug APK: $APK_FILE"
           sha256sum "$APK_FILE"
 
       - name: Upload Debug APK Artifact
